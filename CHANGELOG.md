@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.2.1
+
+[compare changes](https://github.com/hywax/changelogen-monorepo/compare/v0.2.0...v0.2.1)
+
+### 🩹 Fixes
+
+- Remove 'v' prefix from release version in success message ([cf873b8](https://github.com/hywax/changelogen-monorepo/commit/cf873b8))
+
+### ❤️ Contributors
+
+- Hywax <a.hywax@gmail.com>
+
 ## v0.2.0
 
 [compare changes](https://github.com/hywax/changelogen-monorepo/compare/v0.1.0...v0.2.0)
