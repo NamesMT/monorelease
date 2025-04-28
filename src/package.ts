@@ -45,7 +45,11 @@ export async function processPackage(config: ProcessPackageConfig) {
     },
   })
 
-  const rawCommits = await getGitDiff(changelogenConfig.from, changelogenConfig.to, [config.path])
+  const rawCommits = getGitDiff(
+    latestTag === 'v0.0.0' ? undefined : changelogenConfig.from,
+    changelogenConfig.to,
+    [config.path],
+  )
   const commits = parseCommits(rawCommits, changelogenConfig)
 
   if (config.bump || config.release) {

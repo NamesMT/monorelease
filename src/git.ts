@@ -2,7 +2,7 @@ import type { RawGitCommit } from 'changelogen'
 import { execCommand } from './exec'
 
 export function getGitDiff(from: string | undefined, to = 'HEAD', includePaths: string[]): RawGitCommit[] {
-  const r = execCommand(`git --no-pager log "${from ? `${from}...` : ''}${to}" --pretty="----%n%s|%h|%an|%ae%n%b" --name-status -- ${includePaths.join(' ')}`)
+  const r = execCommand(`git --no-pager log "${from ? `${from}...${to}` : to}" --pretty="----%n%s|%h|%an|%ae%n%b" --name-status -- ${includePaths.join(' ')}`)
 
   return r
     .split('----\n')
