@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.3.0
+
+[compare changes](https://github.com/hywax/changelogen-monorepo/compare/v0.2.1...v0.3.0)
+
+### 🩹 Fixes
+
+- Add 'v' prefix to release version for monorepo packages ([47f9bd4](https://github.com/hywax/changelogen-monorepo/commit/47f9bd4))
+
+### ❤️ Contributors
+
+- Hywax <a.hywax@gmail.com>
+
 ## v0.2.1
 
 [compare changes](https://github.com/hywax/changelogen-monorepo/compare/v0.2.0...v0.2.1)
