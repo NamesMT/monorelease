@@ -19,7 +19,8 @@
     "prepack": "unbuild",
     "changelogen-monorepo": "jiti ./src/cli.ts",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix ."
+    "lint:fix": "eslint --fix .",
+    "prepare": "husky"
   },
   "dependencies": {
     "@types/node": "^22.15.3",
