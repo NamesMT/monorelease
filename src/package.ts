@@ -117,7 +117,7 @@ export async function processPackage(config: ProcessPackageConfig) {
 
     if (config.github !== false && changelogenConfig.repo?.provider === 'github') {
       await githubRelease(changelogenConfig, {
-        version: changelogenConfig.newVersion!,
+        version: `${config.name}-${changelogenConfig.newVersion}`,
         body: markdown.split('\n').slice(2).join('\n'),
       })
     }

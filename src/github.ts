@@ -1,8 +1,44 @@
-import type { ResolvedChangelogConfig } from 'changelogen'
+import type { GithubRelease, ResolvedChangelogConfig } from 'changelogen'
 import process from 'node:process'
-import { resolveGithubToken, syncGithubRelease } from 'changelogen'
+import { createGithubRelease, getGithubReleaseByTag, githubNewReleaseURL, resolveGithubToken, updateGithubRelease } from 'changelogen'
 import consola from 'consola'
 import { colors } from 'consola/utils'
+
+export async function syncGithubRelease(
+  config: ResolvedChangelogConfig,
+  release: { version: string, body: string },
+) {
+  const currentGhRelease = await getGithubReleaseByTag(config, release.version).catch(() => {})
+
+  const ghRelease: GithubRelease = {
+    tag_name: release.version,
+    name: release.version,
+    body: release.body,
+  }
+
+  if (!config.tokens.github) {
+    return {
+      status: 'manual',
+      url: githubNewReleaseURL(config, release),
+    }
+  }
+
+  try {
+    const newGhRelease = await (currentGhRelease
+      ? updateGithubRelease(config, currentGhRelease.id!, ghRelease)
+      : createGithubRelease(config, ghRelease))
+    return {
+      status: currentGhRelease ? 'updated' : 'created',
+      id: newGhRelease.id,
+    }
+  } catch (error) {
+    return {
+      status: 'manual',
+      error,
+      url: githubNewReleaseURL(config, release),
+    }
+  }
+}
 
 export async function githubRelease(
   config: ResolvedChangelogConfig,
