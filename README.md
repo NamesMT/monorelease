@@ -3,8 +3,8 @@
 Generate Beautiful Changelogs using [changelogen](https://github.com/unjs/changelogen)
 
 >[!NOTE]
-> This repository will help you generate a changelog for your monorepo project. 
-> Just a heads-up: I originally built it for myself, so if you need extra features, 
+> This repository will help you generate a changelog for your monorepo project.
+> Just a heads-up: I originally built it for myself, so if you need extra features,
 > feel free to fork it and add your own!
 
 ## CLI Usage
