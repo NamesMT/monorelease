@@ -80,7 +80,7 @@ export async function githubRelease(
       })
   } else {
     consola.success(
-      `Synced ${colors.cyan(`v${release.version}`)} to Github releases!`,
+      `Synced ${colors.cyan(`${release.version}`)} to Github releases!`,
     )
   }
 }
