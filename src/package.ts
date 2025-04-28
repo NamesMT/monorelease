@@ -97,7 +97,7 @@ export async function processPackage(config: ProcessPackageConfig) {
   // Commit and tag changes for release mode
   if (config.release) {
     if (config.commit !== false) {
-      const filesToAdd = [changelogenConfig.output, 'package.json'].filter((f) => f && typeof f === 'string') as string[]
+      const filesToAdd = [changelogenConfig.output, `${config.cwd}/package.json`].filter((f) => f && typeof f === 'string') as string[]
       execCommand(`git add ${filesToAdd.map((f) => `"${f}"`).join(' ')}`, config.cwd)
 
       const msg = changelogenConfig.templates.commitMessage!.replaceAll('{{newVersion}}', changelogenConfig.newVersion!)
