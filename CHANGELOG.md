@@ -1,6 +1,28 @@
 # Changelog
 
 
+## v0.2.0
+
+[compare changes](https://github.com/hywax/changelogen-monorepo/compare/v0.1.0...v0.2.0)
+
+### 🚀 Enhancements
+
+- Support monorepo package release to GitHub ([e24218f](https://github.com/hywax/changelogen-monorepo/commit/e24218f))
+
+### 🩹 Fixes
+
+- Handle initial tag in getGitDiff ([d908d99](https://github.com/hywax/changelogen-monorepo/commit/d908d99))
+- Git add package.json from correct cwd ([1b30ad4](https://github.com/hywax/changelogen-monorepo/commit/1b30ad4))
+- Git add package.json from correct path ([7974e8c](https://github.com/hywax/changelogen-monorepo/commit/7974e8c))
+
+### 📖 Documentation
+
+- Improve README clarity ([2b7f483](https://github.com/hywax/changelogen-monorepo/commit/2b7f483))
+
+### ❤️ Contributors
+
+- Hywax <a.hywax@gmail.com>
+
 ## v0.1.0
 
 
