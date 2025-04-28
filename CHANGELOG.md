@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.4.0
+
+[compare changes](https://github.com/hywax/changelogen-monorepo/compare/v0.3.0...v0.4.0)
+
+### 🚀 Enhancements
+
+- Allow custom version input for package releases ([b5079c2](https://github.com/hywax/changelogen-monorepo/commit/b5079c2))
+
+### ❤️ Contributors
+
+- Hywax <a.hywax@gmail.com>
+
 ## v0.3.0
 
 [compare changes](https://github.com/hywax/changelogen-monorepo/compare/v0.2.1...v0.3.0)
