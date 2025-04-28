@@ -29,11 +29,28 @@ const cli = defineCommand({
     const workspaces = workspace.resolve({
       workspacePath: cwd,
     })
+    let version: string | undefined
 
     const pkg = await consola.prompt('Select packages', {
       type: 'select',
       options: Object.keys(workspaces),
     })
+
+    const versionType = await consola.prompt('Select version bump type', {
+      type: 'select',
+      options: ['auto', 'custom'],
+    })
+
+    if (versionType === 'custom') {
+      version = await consola.prompt('Enter version, e.g. 1.0.0', {
+        type: 'text',
+      })
+
+      if (!(version || '').match(/^\d+\.\d+\.\d+$/)) {
+        consola.error('Invalid version format, must be in the format of X.Y.Z')
+        process.exit(1)
+      }
+    }
 
     processPackage({
       name: pkg,
@@ -42,6 +59,7 @@ const cli = defineCommand({
       push: args.push,
       release: args.release,
       publish: args.publish,
+      version,
     })
 
     consola.success('Done!')

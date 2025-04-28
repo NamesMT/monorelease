@@ -19,6 +19,7 @@ export interface ProcessPackageConfig {
   bump?: boolean
   output?: boolean
   publish?: boolean
+  version?: string
 }
 
 function packageLatestTag(name: string, lastAt = -1): string {
@@ -38,6 +39,7 @@ export async function processPackage(config: ProcessPackageConfig) {
   const latestTag = packageLatestTag(config.name)
   const changelogenConfig = await loadChangelogConfig(config.path, {
     from: `${config.name}-${latestTag}`,
+    newVersion: config.version,
     templates: {
       commitMessage: `chore(release): ${config.name} v{{newVersion}}`,
       tagMessage: `${config.name}-v{{newVersion}}`,
@@ -47,7 +49,7 @@ export async function processPackage(config: ProcessPackageConfig) {
 
   const rawCommits = getGitDiff(
     latestTag === 'v0.0.0' ? undefined : changelogenConfig.from,
-    changelogenConfig.to,
+    'HEAD',
     [config.path],
   )
   const commits = parseCommits(rawCommits, changelogenConfig)
