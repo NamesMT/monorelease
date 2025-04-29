@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.4.1
+
+[compare changes](https://github.com/hywax/changelogen-monorepo/compare/v0.4.0...v0.4.1)
+
+### 🚀 Enhancements
+
+- Add helper function to generate GitHub new release URL ([4ac1e47](https://github.com/hywax/changelogen-monorepo/commit/4ac1e47))
+
+### ❤️ Contributors
+
+- Hywax <a.hywax@gmail.com>
+
 ## v0.4.0
 
 [compare changes](https://github.com/hywax/changelogen-monorepo/compare/v0.3.0...v0.4.0)
