@@ -65,7 +65,10 @@ export async function processPackage(config: ProcessPackageConfig) {
     changelogenConfig.newVersion = newVersion
   }
 
-  const markdown = await generateMarkDown(commits, changelogenConfig)
+  const markdown = await generateMarkDown(commits, {
+    ...changelogenConfig,
+    from: latestTag === 'v0.0.0' ? 'main' : changelogenConfig.from,
+  })
 
   const displayOnly = !config.bump && !config.release
   if (displayOnly) {
