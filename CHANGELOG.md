@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.4.2
+
+[compare changes](https://github.com/hywax/changelogen-monorepo/compare/v0.4.1...v0.4.2)
+
+### 🩹 Fixes
+
+- Generate markdown from main if no previous tag exists ([068d28d](https://github.com/hywax/changelogen-monorepo/commit/068d28d))
+
+### ❤️ Contributors
+
+- Hywax <a.hywax@gmail.com>
+
 ## v0.4.1
 
 [compare changes](https://github.com/hywax/changelogen-monorepo/compare/v0.4.0...v0.4.1)
