@@ -1,6 +1,6 @@
 import type { GithubRelease, ResolvedChangelogConfig } from 'changelogen'
 import process from 'node:process'
-import { createGithubRelease, getGithubReleaseByTag, githubNewReleaseURL, resolveGithubToken, updateGithubRelease } from 'changelogen'
+import { createGithubRelease, getGithubReleaseByTag, resolveGithubToken, updateGithubRelease } from 'changelogen'
 import consola from 'consola'
 import { colors } from 'consola/utils'
 
@@ -38,6 +38,13 @@ export async function syncGithubRelease(
       url: githubNewReleaseURL(config, release),
     }
   }
+}
+
+export function githubNewReleaseURL(
+  config: ResolvedChangelogConfig,
+  release: { version: string, body: string },
+) {
+  return `https://${config.repo.domain}/${config.repo.repo}/releases/new?tag=${release.version}&title=${release.version}&body=${encodeURIComponent(release.body)}`
 }
 
 export async function githubRelease(
