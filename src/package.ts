@@ -2,6 +2,7 @@ import { existsSync, promises as fsp } from 'node:fs'
 import process from 'node:process'
 import { bumpVersion, generateMarkDown, loadChangelogConfig, parseCommits } from 'changelogen'
 import consola from 'consola'
+import semver from 'semver'
 import { execCommand } from './exec'
 import { getGitDiff } from './git'
 import { githubRelease } from './github'
@@ -22,11 +23,12 @@ export interface ProcessPackageConfig {
   version?: string
 }
 
-function packageLatestTag(name: string, lastAt = -1): string {
+function packageLatestTag(name: string): string {
   const tag = execCommand(`git tag -l '${name}-*'`)
     .split('\n')
     .filter((tag) => tag)
-    .at(lastAt)
+    .sort((a, b) => semver.gt(a.replace(`${name}-`, ''), b.replace(`${name}-`, '')) ? 1 : -1)
+    .pop()
 
   if (!tag || !tag?.includes(name)) {
     return 'v0.0.0'
