@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.4.3
+
+[compare changes](https://github.com/hywax/changelogen-monorepo/compare/v0.4.2...v0.4.3)
+
+### 🩹 Fixes
+
+- Sort tags before selecting latest package tag ([f83b9ea](https://github.com/hywax/changelogen-monorepo/commit/f83b9ea))
+
+### ❤️ Contributors
+
+- Hywax <a.hywax@gmail.com>
+
 ## v0.4.2
 
 [compare changes](https://github.com/hywax/changelogen-monorepo/compare/v0.4.1...v0.4.2)
