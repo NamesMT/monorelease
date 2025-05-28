@@ -26,6 +26,12 @@ const cli = defineCommand({
     pkg: {
       type: 'string',
     },
+    bump: {
+      type: 'boolean',
+    },
+    r: {
+      type: 'string',
+    },
   },
   async run({ args }) {
     const {
@@ -33,13 +39,14 @@ const cli = defineCommand({
       release,
       publish,
       pkg,
+      bump,
+      r,
     } = args
 
     const cwd = process.cwd()
     const workspaces = workspace.resolve({
       workspacePath: cwd,
     })
-    let version: string | undefined
 
     const selectedPkg = pkg || await consola.prompt('Select packages', {
       type: 'select',
@@ -51,19 +58,26 @@ const cli = defineCommand({
       throw new Error(`Package ${selectedPkg} not found in workspace`)
     }
 
-    const versionType = await consola.prompt('Select version bump type', {
-      type: 'select',
-      options: ['auto', 'custom'],
-      cancel: 'reject',
-    })
+    let version: string | undefined = r
+    const versionType: 'custom' | 'auto' = version
+      ? 'custom'
+      : bump
+        ? 'auto'
+        : await consola.prompt('Select version bump type', {
+          type: 'select',
+          options: ['auto', 'custom'] as const,
+          cancel: 'reject',
+        })
 
     if (versionType === 'custom') {
-      version = await consola.prompt('Enter version, e.g. 1.0.0', {
-        type: 'text',
-        cancel: 'reject',
-      })
+      if (!version) {
+        version = await consola.prompt('Enter version, e.g. 1.0.0', {
+          type: 'text',
+          cancel: 'reject',
+        })
+      }
 
-      if (!(version || '').match(/^\d+\.\d+\.\d+$/)) {
+      if (!version.match(/^\d+\.\d+\.\d+$/)) {
         consola.error('Invalid version format, must be in the format of X.Y.Z')
         process.exit(1)
       }

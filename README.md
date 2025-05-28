@@ -18,6 +18,10 @@ npx changelogen-monorepo [...args]
 - `--push`: Automatic push of the new tag and release commit to your git repository
 - `--release`: Bumps version in `package.json` and creates commit and git tags using local `git`.
 - `--publish`: Publishes package as a new version on `npm`. You will need to set authorisation tokens separately via .npmrc or environment variables.
+- `-r <version>` | `--bump`:
+  - If `--bump` is present, the version will be bumped automatically.
+  - If `-r` is supplied, the version will be set to the specified version.
+  - By default, the CLI will prompt you to select the version bump type.
 
 ## License
 
