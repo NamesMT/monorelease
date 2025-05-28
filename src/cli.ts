@@ -23,19 +23,33 @@ const cli = defineCommand({
     publish: {
       type: 'boolean',
     },
+    pkg: {
+      type: 'string',
+    },
   },
   async run({ args }) {
+    const {
+      push,
+      release,
+      publish,
+      pkg,
+    } = args
+
     const cwd = process.cwd()
     const workspaces = workspace.resolve({
       workspacePath: cwd,
     })
     let version: string | undefined
 
-    const pkg = await consola.prompt('Select packages', {
+    const selectedPkg = pkg || await consola.prompt('Select packages', {
       type: 'select',
       options: Object.keys(workspaces),
       cancel: 'reject',
     })
+
+    if (!(selectedPkg in workspaces)) {
+      throw new Error(`Package ${selectedPkg} not found in workspace`)
+    }
 
     const versionType = await consola.prompt('Select version bump type', {
       type: 'select',
@@ -56,12 +70,12 @@ const cli = defineCommand({
     }
 
     processPackage({
-      name: pkg,
-      path: workspaces[pkg],
+      name: selectedPkg,
+      path: workspaces[selectedPkg],
       cwd,
-      push: args.push,
-      release: args.release,
-      publish: args.publish,
+      push,
+      release,
+      publish,
       version,
     })
 
