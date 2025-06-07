@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.5.0
+
+[compare changes](https://github.com/hywax/changelogen-monorepo/compare/v0.4.4...v0.5.0)
+
+### 🚀 Enhancements
+
+- Add `pkg`, `r`, `bump` args ([#4](https://github.com/hywax/changelogen-monorepo/pull/4))
+
+### ❤️ Contributors
+
+- Trung Dang ([@NamesMT](https://github.com/NamesMT))
+
 ## v0.4.4
 
 [compare changes](https://github.com/hywax/changelogen-monorepo/compare/v0.4.3...v0.4.4)

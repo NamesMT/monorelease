@@ -1,7 +1,7 @@
 {
   "name": "changelogen-monorepo",
   "type": "module",
-  "version": "0.4.4",
+  "version": "0.5.0",
   "packageManager": "pnpm@10.6.1",
   "description": "Generate Beautiful Changelogs Monorepo using Conventional Commits",
   "license": "MIT",
