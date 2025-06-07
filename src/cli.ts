@@ -34,16 +34,19 @@ const cli = defineCommand({
     const pkg = await consola.prompt('Select packages', {
       type: 'select',
       options: Object.keys(workspaces),
+      cancel: 'reject',
     })
 
     const versionType = await consola.prompt('Select version bump type', {
       type: 'select',
       options: ['auto', 'custom'],
+      cancel: 'reject',
     })
 
     if (versionType === 'custom') {
       version = await consola.prompt('Enter version, e.g. 1.0.0', {
         type: 'text',
+        cancel: 'reject',
       })
 
       if (!(version || '').match(/^\d+\.\d+\.\d+$/)) {
