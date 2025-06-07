@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.4.4
+
+[compare changes](https://github.com/hywax/changelogen-monorepo/compare/v0.4.3...v0.4.4)
+
+### 🏡 Chore
+
+- Should throw and exit process when cancelling prompt ([#3](https://github.com/hywax/changelogen-monorepo/pull/3))
+
+### ❤️ Contributors
+
+- Trung Dang ([@NamesMT](https://github.com/NamesMT))
+
 ## v0.4.3
 
 [compare changes](https://github.com/hywax/changelogen-monorepo/compare/v0.4.2...v0.4.3)
