@@ -1,23 +1,34 @@
 {
-  "name": "monorelease",
+  "name": "repo-release",
   "type": "module",
   "version": "0.6.0-20250728-065526-05a0522",
   "packageManager": "pnpm@10.13.1",
   "description": "Release monorepo (sub)projects with ease",
   "author": "NamesMT <dangquoctrung123@gmail.com>",
   "license": "MIT",
-  "homepage": "https://github.com/namesmt/monorelease#readme",
+  "homepage": "https://github.com/namesmt/repo-release#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/namesmt/monorelease.git"
+    "url": "git+https://github.com/namesmt/repo-release.git"
   },
-  "bugs": "https://github.com/namesmt/monorelease/issues",
+  "bugs": "https://github.com/namesmt/repo-release/issues",
+  "keywords": [
+    "monorelease",
+    "monorepo",
+    "release",
+    "changelog",
+    "version",
+    "bump",
+    "publish",
+    "changelogen",
+    "cli"
+  ],
   "sideEffects": false,
   "imports": {
     "#src/*": "./src/*"
   },
   "bin": {
-    "monorelease": "./dist/cli-entry.mjs"
+    "repo-release": "./dist/cli-entry.mjs"
   },
   "files": [
     "dist"

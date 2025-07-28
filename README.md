@@ -1,13 +1,13 @@
 <div align="center">
 
-<h1>Monorelease</h1>
+<h1>repo-release</h1>
 
 <h3>Release monorepo (sub)projects with ease</h3>
 <img src="./branding.svg" alt="Project's branding image" width="320"/>
 
 </div>
 
-# monorelease ![TypeScript heart icon](https://img.shields.io/badge/♡-%23007ACC.svg?logo=typescript&logoColor=white)
+# repo-release ![TypeScript heart icon](https://img.shields.io/badge/♡-%23007ACC.svg?logo=typescript&logoColor=white)
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
@@ -15,7 +15,7 @@
 [![Bundlejs][bundlejs-src]][bundlejs-href]
 [![TypeDoc][TypeDoc-src]][TypeDoc-href]
 
-* [monorelease ](#monorelease-)
+* [repo-release ](#repo-release-)
   * [Overview](#overview)
   * [CLI Usage and Features](#cli-usage-and-features)
   * [License](#license)
@@ -23,12 +23,12 @@
 
 ## Overview
 
-**monorelease** helps you generate changelogs, bump versions, and publish GitHub releases + npm packages for your monorepo (sub)projects.
+**repo-release** helps you generate changelogs, bump versions, and publish GitHub releases + npm packages for your monorepo (sub)projects.
 
 ## CLI Usage and Features
 
 ```bash
-npx monorelease [...args]
+npx repo-release [...args]
 ```
 
 **Arguments**
@@ -42,7 +42,7 @@ npx monorelease [...args]
   - If `-r` is supplied, the version will be set to the specified version.
   - By default, the CLI will prompt you to select the version bump type.
 
-E.g.: for fast shortcut usage, you can create a `monorelease` script at your monorepo root for `npx -y monorelease@latest --release --bump --push --pkg=`, you can then `npm run monorelease --publish` or `npm run monorelease <pkg-name> --publish` to release/publish a package in your monorepo.
+E.g.: for fast shortcut usage, you can create a `repo-release` script at your monorepo root for `npx -y repo-release@latest --release --bump --push --pkg=`, you can then `npm run repo-release --publish` or `npm run repo-release <pkg-name> --publish` to release/publish a package in your monorepo.
 
 ## License
 
@@ -54,17 +54,17 @@ https://github.com/hywax/changelogen-monorepo - amazing work by @hywax, this pac
 
 <!-- Badges -->
 
-[npm-version-src]: https://img.shields.io/npm/v/monorelease?labelColor=18181B&color=F0DB4F
-[npm-version-href]: https://npmjs.com/package/monorelease
-[npm-downloads-src]: https://img.shields.io/npm/dm/monorelease?labelColor=18181B&color=F0DB4F
-[npm-downloads-href]: https://npmjs.com/package/monorelease
-[codecov-src]: https://img.shields.io/codecov/c/gh/namesmt/monorelease/main?labelColor=18181B&color=F0DB4F
-[codecov-href]: https://codecov.io/gh/namesmt/monorelease
-[license-src]: https://img.shields.io/github/license/namesmt/monorelease.svg?labelColor=18181B&color=F0DB4F
-[license-href]: https://github.com/namesmt/monorelease/blob/main/LICENSE
-[bundlejs-src]: https://img.shields.io/bundlejs/size/monorelease?labelColor=18181B&color=F0DB4F
-[bundlejs-href]: https://bundlejs.com/?q=monorelease
+[npm-version-src]: https://img.shields.io/npm/v/repo-release?labelColor=18181B&color=F0DB4F
+[npm-version-href]: https://npmjs.com/package/repo-release
+[npm-downloads-src]: https://img.shields.io/npm/dm/repo-release?labelColor=18181B&color=F0DB4F
+[npm-downloads-href]: https://npmjs.com/package/repo-release
+[codecov-src]: https://img.shields.io/codecov/c/gh/namesmt/repo-release/main?labelColor=18181B&color=F0DB4F
+[codecov-href]: https://codecov.io/gh/namesmt/repo-release
+[license-src]: https://img.shields.io/github/license/namesmt/repo-release.svg?labelColor=18181B&color=F0DB4F
+[license-href]: https://github.com/namesmt/repo-release/blob/main/LICENSE
+[bundlejs-src]: https://img.shields.io/bundlejs/size/repo-release?labelColor=18181B&color=F0DB4F
+[bundlejs-href]: https://bundlejs.com/?q=repo-release
 [jsDocs-src]: https://img.shields.io/badge/Check_out-jsDocs.io---?labelColor=18181B&color=F0DB4F
-[jsDocs-href]: https://www.jsdocs.io/package/monorelease
+[jsDocs-href]: https://www.jsdocs.io/package/repo-release
 [TypeDoc-src]: https://img.shields.io/badge/Check_out-TypeDoc---?labelColor=18181B&color=F0DB4F
-[TypeDoc-href]: https://namesmt.github.io/monorelease/
+[TypeDoc-href]: https://namesmt.github.io/repo-release/
