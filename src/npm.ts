@@ -1,4 +1,5 @@
 import type { ChangelogConfig } from 'changelogen'
+import type { PackageJson } from 'pkg-types'
 import process from 'node:process'
 import { resolve } from 'pathe'
 import {
@@ -7,13 +8,13 @@ import {
 import { isCI, provider } from 'std-env'
 import { execCommand } from './exec'
 
-export function readPackageJSON(config: ChangelogConfig) {
+export function readPackageJSON(config: ChangelogConfig): Promise<PackageJson> {
   const path = resolve(config.cwd, 'package.json')
 
   return _readPackageJSON(path)
 }
 
-export async function npmPublish(config: ChangelogConfig) {
+export async function npmPublish(config: ChangelogConfig): Promise<string> {
   const pkg = await readPackageJSON(config)
 
   const args = [...config.publish.args || []]

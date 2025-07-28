@@ -3,6 +3,7 @@
 import process from 'node:process'
 import { defineCommand, runMain } from 'citty'
 import consola from 'consola'
+// @ts-expect-error no TS definition
 import workspace from 'workspace-resolver'
 import packageJson from '../package.json'
 import { processPackage } from './package'
@@ -64,10 +65,10 @@ const cli = defineCommand({
       : bump
         ? 'auto'
         : await consola.prompt('Select version bump type', {
-          type: 'select',
-          options: ['auto', 'custom'] as const,
-          cancel: 'reject',
-        })
+            type: 'select',
+            options: ['auto', 'custom'] as const,
+            cancel: 'reject',
+          })
 
     if (versionType === 'custom') {
       if (!version) {
@@ -77,8 +78,8 @@ const cli = defineCommand({
         })
       }
 
-      if (!version.match(/^\d+\.\d+\.\d+$/)) {
-        consola.error('Invalid version format, must be in the format of X.Y.Z')
+      if (!version.match(/^\d+\.\d+\.\d+(-[\w.]+)?$/)) {
+        consola.error('Invalid version format, must be in the format of X.Y.Z[-*]')
         process.exit(1)
       }
     }

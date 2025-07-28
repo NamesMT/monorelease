@@ -7,7 +7,22 @@ import { colors } from 'consola/utils'
 export async function syncGithubRelease(
   config: ResolvedChangelogConfig,
   release: { version: string, body: string },
-) {
+): Promise<{
+  status: string
+  url: string
+  id?: undefined
+  error?: undefined
+} | {
+  status: string
+  id: any
+  url?: undefined
+  error?: undefined
+} | {
+  status: string
+  error: unknown
+  url: string
+  id?: undefined
+}> {
   const currentGhRelease = await getGithubReleaseByTag(config, release.version).catch(() => {})
 
   const ghRelease: GithubRelease = {
@@ -31,7 +46,8 @@ export async function syncGithubRelease(
       status: currentGhRelease ? 'updated' : 'created',
       id: newGhRelease.id,
     }
-  } catch (error) {
+  }
+  catch (error) {
     return {
       status: 'manual',
       error,
@@ -43,14 +59,14 @@ export async function syncGithubRelease(
 export function githubNewReleaseURL(
   config: ResolvedChangelogConfig,
   release: { version: string, body: string },
-) {
+): string {
   return `https://${config.repo.domain}/${config.repo.repo}/releases/new?tag=${release.version}&title=${release.version}&body=${encodeURIComponent(release.body)}`
 }
 
 export async function githubRelease(
   config: ResolvedChangelogConfig,
   release: { version: string, body: string },
-) {
+): Promise<void> {
   if (!config.tokens.github) {
     config.tokens.github = await resolveGithubToken(config).catch(
       () => undefined,
@@ -68,7 +84,7 @@ export async function githubRelease(
       consola.error(result.error)
       process.exitCode = 1
     }
-    const open = await import('open').then((r) => r.default)
+    const open = await import('open').then(r => r.default)
 
     if (!result.url) {
       return
@@ -85,7 +101,8 @@ export async function githubRelease(
           }\n`,
         )
       })
-  } else {
+  }
+  else {
     consola.success(
       `Synced ${colors.cyan(`${release.version}`)} to Github releases!`,
     )

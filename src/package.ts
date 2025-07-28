@@ -23,34 +23,30 @@ export interface ProcessPackageConfig {
   version?: string
 }
 
-function packageLatestTag(name: string): string {
-  const tag = execCommand(`git tag -l '${name}-*'`)
+function packageLatestVersion(name: string): string {
+  const tag = execCommand(`git tag -l '${name}@*'`)
     .split('\n')
-    .filter((tag) => tag)
-    .sort((a, b) => semver.gt(a.replace(`${name}-`, ''), b.replace(`${name}-`, '')) ? 1 : -1)
+    .filter(tag => tag)
+    .sort((a, b) => semver.gt(a.replace(`${name}@`, ''), b.replace(`${name}@`, '')) ? 1 : -1)
     .pop()
 
-  if (!tag || !tag?.includes(name)) {
-    return 'v0.0.0'
-  }
-
-  return tag.replace(`${name}-`, '')
+  return tag ? tag.replace(`${name}@`, '') : '0.0.0'
 }
 
-export async function processPackage(config: ProcessPackageConfig) {
-  const latestTag = packageLatestTag(config.name)
+export async function processPackage(config: ProcessPackageConfig): Promise<void> {
+  const latestVersion = packageLatestVersion(config.name)
   const changelogenConfig = await loadChangelogConfig(config.path, {
-    from: `${config.name}-${latestTag}`,
+    from: `${config.name}@${latestVersion}`,
     newVersion: config.version,
     templates: {
-      commitMessage: `chore(release): ${config.name} v{{newVersion}}`,
-      tagMessage: `${config.name}-v{{newVersion}}`,
-      tagBody: `${config.name}-v{{newVersion}}`,
+      commitMessage: `chore(release): ${config.name}@{{newVersion}}`,
+      tagMessage: `${config.name}@{{newVersion}}`,
+      tagBody: `${config.name}@{{newVersion}}`,
     },
   })
 
   const rawCommits = getGitDiff(
-    latestTag === 'v0.0.0' ? undefined : changelogenConfig.from,
+    latestVersion === '0.0.0' ? undefined : changelogenConfig.from,
     'HEAD',
     [config.path],
   )
@@ -69,7 +65,7 @@ export async function processPackage(config: ProcessPackageConfig) {
 
   const markdown = await generateMarkDown(commits, {
     ...changelogenConfig,
-    from: latestTag === 'v0.0.0' ? 'main' : changelogenConfig.from,
+    from: latestVersion === '0.0.0' ? 'main' : changelogenConfig.from,
   })
 
   const displayOnly = !config.bump && !config.release
@@ -82,7 +78,8 @@ export async function processPackage(config: ProcessPackageConfig) {
     let changelogMD: string
     if (existsSync(changelogenConfig.output)) {
       changelogMD = await fsp.readFile(changelogenConfig.output, 'utf8')
-    } else {
+    }
+    else {
       changelogMD = '# Changelog\n\n'
     }
 
@@ -94,7 +91,8 @@ export async function processPackage(config: ProcessPackageConfig) {
         + markdown
         }\n\n${
           changelogMD.slice(lastEntry.index)}`
-    } else {
+    }
+    else {
       changelogMD += `\n${markdown}\n\n`
     }
 
@@ -104,8 +102,8 @@ export async function processPackage(config: ProcessPackageConfig) {
   // Commit and tag changes for release mode
   if (config.release) {
     if (config.commit !== false) {
-      const filesToAdd = [changelogenConfig.output, `${config.path}/package.json`].filter((f) => f && typeof f === 'string') as string[]
-      execCommand(`git add ${filesToAdd.map((f) => `"${f}"`).join(' ')}`, config.cwd)
+      const filesToAdd = [changelogenConfig.output, `${config.path}/package.json`].filter(f => f && typeof f === 'string') as string[]
+      execCommand(`git add ${filesToAdd.map(f => `"${f}"`).join(' ')}`, config.cwd)
 
       const msg = changelogenConfig.templates.commitMessage!.replaceAll('{{newVersion}}', changelogenConfig.newVersion!)
       execCommand(`git commit -m "${msg}"`, config.cwd)
@@ -124,7 +122,7 @@ export async function processPackage(config: ProcessPackageConfig) {
 
     if (config.github !== false && changelogenConfig.repo?.provider === 'github') {
       await githubRelease(changelogenConfig, {
-        version: `${config.name}-v${changelogenConfig.newVersion}`,
+        version: `${config.name}@${changelogenConfig.newVersion}`,
         body: markdown.split('\n').slice(2).join('\n'),
       })
     }
