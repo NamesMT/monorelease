@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v0.6.0-20250728-070500-26468da
+
+[compare changes](https://github.com/namesmt/repo-release/compare/v0.6.0-20250728-065526-05a0522...v0.6.0-20250728-070500-26468da)
+
+### 🏡 Chore
+
+- Turn off typedoc ([298c0ce](https://github.com/namesmt/repo-release/commit/298c0ce))
+- ⚠️  Change naming due to similar package name ([26468da](https://github.com/namesmt/repo-release/commit/26468da))
+
+#### ⚠️ Breaking Changes
+
+- ⚠️  Change naming due to similar package name ([26468da](https://github.com/namesmt/repo-release/commit/26468da))
+
+### ❤️ Contributors
+
+- NamesMT ([@NamesMT](https://github.com/NamesMT))
+
 ## v0.6.0-20250728-065526-05a0522
 
 
