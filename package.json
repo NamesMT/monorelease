@@ -1,7 +1,7 @@
 {
   "name": "repo-release",
   "type": "module",
-  "version": "0.6.0-20250728-070500-26468da",
+  "version": "0.6.0",
   "packageManager": "pnpm@10.13.1",
   "description": "Release monorepo (sub)projects with ease",
   "author": "NamesMT <dangquoctrung123@gmail.com>",

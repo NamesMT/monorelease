@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.6.0
+
+[compare changes](https://github.com/namesmt/repo-release/compare/v0.6.0-20250728-070500-26468da...v0.6.0)
+
+### 🏡 Chore
+
+- Update deps ([48f5fb3](https://github.com/namesmt/repo-release/commit/48f5fb3))
+
+### ❤️ Contributors
+
+- NamesMT ([@NamesMT](https://github.com/NamesMT))
+
 ## v0.6.0-20250728-070500-26468da
 
 [compare changes](https://github.com/namesmt/repo-release/compare/v0.6.0-20250728-065526-05a0522...v0.6.0-20250728-070500-26468da)
